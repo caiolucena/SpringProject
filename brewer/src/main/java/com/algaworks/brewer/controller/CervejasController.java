@@ -17,7 +17,7 @@ public class CervejasController {
 	
 	//SE for get chama esse
 	@RequestMapping("/cervejas/novo")
-	public String novo() {
+	public String novo(Cerveja cerveja) {
 		return "cerveja/CadastroCerveja";
 	}
 	
@@ -26,9 +26,7 @@ public class CervejasController {
 	public String  cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
 			RedirectAttributes attributes) { //ela pega o nome lá do form
 		if(result.hasErrors()) {
-			model.addAttribute("mensagem","Erro no formulário");
-			
-			return "cerveja/CadastroCerveja";
+			return novo(cerveja);
 		}
 		
 		//salvar no banco
