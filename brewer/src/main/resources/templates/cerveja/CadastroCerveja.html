@@ -126,19 +126,55 @@
 					<div class="row">
 						<!--o row é pra ficar lado a lado organizado. O row é dividido em 12 pedaços  -->
 						<div class="form-group col-sm-2">
-							<label for="sku">sku</label> <input id="sku"
-								type="text" class="form-control" />
+							<label for="sku">sku</label> <input id="sku" type="text"
+								class="form-control" />
 						</div>
 						<div class="form-group col-sm-10">
-							<label for="nome">nome</label> <input id="nome"
-								type="text" class="form-control" />
+							<label for="nome">nome</label> <input id="nome" type="text"
+								class="form-control" />
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="descricao">Descrição</label>
-						<textarea id="descricao" rows="3"
-							class="form-control"></textarea>
+						<textarea id="descricao" rows="3" class="form-control"></textarea>
+					</div>
+
+					<div class="row">
+						<!--o row é pra ficar lado a lado organizado. O row é dividido em 12 pedaços  -->
+						<div class="form-group col-sm-3">
+							<label for="estilo">Estilo</label> <select id="estilo"
+								class="form-control">
+								<option value="">Selecione o Estilo</option>
+								<option value="1">Estilo 1</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="sabor">Sabor</label> <select id="nome"
+								class="form-control">
+								<option value="">Selecione o Sabor</option>
+								<option value="1">Sabor 1</option>
+							</select>
+						</div>
+						<div class="form-group col-sm-3">
+							<label for="teorAlcoolico">Teor Alcoolico</label>
+							<div class="input-group">
+								<input id="teorAlcoolico" type="text" class="form-control" />
+								<div class="input-group-addon">%</div>
+							</div>
+
+						</div>
+						<div class="form-group col-lg-6 col-sm-3">
+							<label for="origem">Origem</label>
+							<div>
+								<div class="radio radio-inline">
+									<input type="radio" name="origem" /> <label>Nacional</label>
+								</div>
+								<div class="radio radio-inline">
+									<input type="radio" name="origem" /> <label>Internacional</label>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div class="row">
