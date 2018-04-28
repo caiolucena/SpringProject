@@ -620,7 +620,7 @@ body {
 }
 .page-header {
   padding-bottom: 0px;
-  background-color: #fafbfd;
+  background-color: #dfe0e0; /*Alterei de #fafbfd */
 }
 .page-header h1 {
   display: flex;
