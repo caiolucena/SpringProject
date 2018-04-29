@@ -28,23 +28,23 @@
 				</div>
 				 -->
 
-			<form method="POST" class="form-vertical  js-form-loading">
+			<form method="POST" th:object = "${cerveja}" class="form-vertical  js-form-loading">
 
 				<div class="row">
 					<!--o row é pra ficar lado a lado organizado. O row é dividido em 12 pedaços  -->
 					<div class="form-group col-sm-2">
 						<label for="sku">SKU</label> <input id="sku" type="text"
-							class="form-control" autofocus="autofocus" />
+							class="form-control" autofocus="autofocus" th:field = "*{sku}"/>
 					</div>
 					<div class="form-group col-sm-10">
-						<label for="nome">Nome</label> <input id="nome" type="text"
+						<label for="nome">Nome</label> <input id="nome" type="text" th:field="*{nome}"
 							class="form-control" />
 					</div>
 				</div>
 
 				<div class="form-group">
 					<label for="descricao">Descrição</label>
-					<textarea id="descricao" rows="3" class="form-control"></textarea>
+					<textarea id="descricao" rows="3" class="form-control" th:field="*{descricao}"></textarea>
 				</div>
 
 				<div class="row">
@@ -54,10 +54,12 @@
 						<div class="bw-field-action">
 							<select id="nomeEstilo" class="form-control">
 								<option value="">Selecione o Estilo</option>
-								<option value="1">Estilo 1</option>
+								<option th:each="estilo: ${estilos}" th:value="${estilo.codigo}"
+									th:text="${estilo.nome}"></option>
 							</select>
 							<div class="bw-field-action__icon">
-								<a href="#" data-toggle = "modal" data-target="#modalCadastroRapidoEstilo"> <i
+								<a href="#" data-toggle="modal"
+									data-target="#modalCadastroRapidoEstilo"> <i
 									class="glyphicon glyphicon-plus-sign bw-glyphicon-large"></i>
 								</a>
 							</div>
@@ -65,10 +67,12 @@
 					</div>
 
 					<div class="form-group col-sm-3">
-						<label for="sabor">Sabor</label> <select id="nome"
+						<label for="sabor">Sabor</label> <select id="nome" th:field = "*{sabor}"
 							class="form-control">
 							<option value="">Selecione o Sabor</option>
-							<option value="1">Sabor 1</option>
+							<option th:each="sabor: ${sabores}" th:value="${sabor}"
+								th:text="${sabor.descricao}"></option>
+
 						</select>
 					</div>
 
@@ -76,7 +80,7 @@
 						<label for="teorAlcoolico">Teor Alcoólico</label>
 						<div class="input-group">
 							<input id="teorAlcoolico" type="text"
-								class="form-control js-decimal" />
+								class="form-control js-decimal" th:field="*{teorAlcoolico}"/>
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
@@ -84,35 +88,37 @@
 					<div class="form-group col-lg-3 col-sm-6">
 						<label for="origem">Origem</label>
 						<div>
-							<div class="radio radio-inline">
-								<input type="radio" name="origem" /> <label>Nacional</label>
-							</div>
-							<div class="radio radio-inline">
-								<input type="radio" name="origem" /> <label>Internacional</label>
-							</div>
+							<th:block th:each="origem : ${origens}">
+								<div class="radio radio-inline">
+									<input th:id="|id_${origem}|" type="radio" th:value="${origem}"
+										th:field ="*{origem}"> 
+									<label th:for="|id_${origem}|"
+										th:text="${origem.descricao}"></label>
+								</div>
+							</th:block>
 						</div>
 					</div>
 				</div>
 
 				<div class="row">
 					<div class="col-sm-3 form-group">
-						<label for="preco">Preço unitário</label>
+						<label for="valor">Preço unitário</label>
 						<div class="input-group">
 							<div class="input-group-addon">R$</div>
-							<input id="preco" type="text" class="form-control js-decimal" />
+							<input id="valor" type="text" class="form-control js-decimal" th:field ="*{valor}" />
 						</div>
 					</div>
 
 					<div class="col-sm-3 form-group">
 						<label for="comissao">Comissão</label>
 						<div class="input-group">
-							<input id="comissao" type="text" class="form-control js-decimal" />
+							<input id="comissao" type="text" class="form-control js-decimal" th:field = "*{comissao}" />
 							<div class="input-group-addon">%</div>
 						</div>
 					</div>
 
 					<div class="col-sm-3 form-group">
-						<label for="estoque">Estoque</label> <input id="estoque"
+						<label for="estoque">Estoque</label> <input id="estoque" th:field=  "*{quantidadeEstoque}"
 							type="text" class="form-control js-plain" />
 					</div>
 

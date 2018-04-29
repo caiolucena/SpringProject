@@ -25,7 +25,7 @@ public class Estilo implements Serializable{
 	private long codigo;
 	
 	@NotBlank(message = "Nome do Estilo é Obrigatório")
-	String nomeEstilo;
+	String nome;
 
 	@OneToMany(mappedBy = "estilo")
 	private List <Cerveja> cervejas;
@@ -50,12 +50,12 @@ public class Estilo implements Serializable{
 		this.codigo = codigo;
 	}
 
-	public String getNomeEstilo() {
-		return nomeEstilo;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeEstilo(String nomeEstilo) {
-		this.nomeEstilo = nomeEstilo;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	@Override
