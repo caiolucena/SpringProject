@@ -50,14 +50,14 @@
 				<div class="row">
 					<!--o row é pra ficar lado a lado organizado. O row é dividido em 12 pedaços  -->
 					<div class="form-group col-sm-3">
-						<label for="estilo">Estilo</label>
+						<label for="nomeEstilo">Estilo</label>
 						<div class="bw-field-action">
-							<select id="estilo" class="form-control">
+							<select id="nomeEstilo" class="form-control">
 								<option value="">Selecione o Estilo</option>
 								<option value="1">Estilo 1</option>
 							</select>
 							<div class="bw-field-action__icon">
-								<a href="#"> <i
+								<a href="#" data-toggle = "modal" data-target="#modalCadastroRapidoEstilo"> <i
 									class="glyphicon glyphicon-plus-sign bw-glyphicon-large"></i>
 								</a>
 							</div>
@@ -123,6 +123,7 @@
 				</div>
 			</form>
 		</div>
+		<div th:replace="estilo/CadastroRapidoEstilo :: modal"></div>
 	</section>
 
 </body>
