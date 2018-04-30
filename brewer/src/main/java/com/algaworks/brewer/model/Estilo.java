@@ -10,43 +10,26 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import org.hibernate.validator.constraints.NotBlank;
-
 @Entity
 @Table(name = "estilo")
-public class Estilo implements Serializable{
-
-	
+public class Estilo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
-	
-	@NotBlank(message = "Nome do Estilo é Obrigatório")
-	String nome;
+	private Long codigo;
 
+	private String nome;
+	
 	@OneToMany(mappedBy = "estilo")
-	private List <Cerveja> cervejas;
-	
-	public List<Cerveja> getCervejas() {
-		return cervejas;
-	}
+	private List<Cerveja> cervejas;
 
-	public void setCervejas(List<Cerveja> cervejas) {
-		this.cervejas = cervejas;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -62,7 +45,7 @@ public class Estilo implements Serializable{
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -75,10 +58,12 @@ public class Estilo implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Estilo other = (Estilo) obj;
-		if (codigo != other.codigo)
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
-	
-	
+
 }

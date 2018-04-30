@@ -16,44 +16,44 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
-
 @Entity
-@Table(name ="cerveja")
+@Table(name = "cerveja")
 public class Cerveja {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long codigo;
-	
+	private Long codigo;
+
 	@NotBlank(message = "SKU é obrigatório")
 	private String sku;
-	
+
 	@NotBlank(message = "Nome é obrigatório")
 	private String nome;
-	
+
 	@Size(min = 1, max = 50, message = "O tamanho da descrição deve estar entre 1 e 50")
 	private String descricao;
-	
+
 	private BigDecimal valor;
-	
+
 	@Column(name = "teor_alcoolico")
 	private BigDecimal teorAlcoolico;
-	
+
+	@Column(name = "comissao")
 	private BigDecimal comissao;
-	
+
 	@Column(name = "quantidade_estoque")
 	private Integer quantidadeEstoque;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Origem origem;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Sabor sabor;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "codigo_estilo")
 	private Estilo estilo;
-	
+
 	public String getSku() {
 		return sku;
 	}
@@ -78,11 +78,11 @@ public class Cerveja {
 		this.descricao = descricao;
 	}
 
-	public long getCodigo() {
+	public Long getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -146,7 +146,7 @@ public class Cerveja {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -159,11 +159,12 @@ public class Cerveja {
 		if (getClass() != obj.getClass())
 			return false;
 		Cerveja other = (Cerveja) obj;
-		if (codigo != other.codigo)
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

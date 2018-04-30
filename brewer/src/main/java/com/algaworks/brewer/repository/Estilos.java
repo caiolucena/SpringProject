@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.algaworks.brewer.model.Estilo;
 
 @Repository
-public interface Estilos extends JpaRepository<Estilo,Long> {
+public interface Estilos extends JpaRepository<Estilo, Long> {
 
 }

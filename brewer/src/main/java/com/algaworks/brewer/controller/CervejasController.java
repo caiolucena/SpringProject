@@ -16,6 +16,7 @@ import com.algaworks.brewer.model.Cerveja;
 import com.algaworks.brewer.model.Origem;
 import com.algaworks.brewer.model.Sabor;
 import com.algaworks.brewer.repository.Estilos;
+import com.algaworks.brewer.service.CadastroCervejaService;
 
 @Controller
 public class CervejasController {
@@ -23,30 +24,32 @@ public class CervejasController {
 	@Autowired
 	private Estilos estilos;
 	
-	//SE for get chama esse
+	@Autowired
+	private CadastroCervejaService cadastroCervejaService;
+
 	@RequestMapping("/cervejas/novo")
 	public ModelAndView novo(Cerveja cerveja) {
 		ModelAndView mv = new ModelAndView("cerveja/CadastroCerveja");
-		mv.addObject("sabores",Sabor.values());
+		mv.addObject("sabores", Sabor.values());
 		mv.addObject("estilos", estilos.findAll());
 		mv.addObject("origens", Origem.values());
 		return mv;
 	}
 	
-	//SE for post, chama esse
-	@RequestMapping(value = "/cervejas/novo",method = RequestMethod.POST)
-	public ModelAndView  cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model,
-			RedirectAttributes attributes) { //ela pega o nome lá do form
-//		if(result.hasErrors()) {
-//			return novo(cerveja);
-//		}
-		
-		//salvar no banco
-		
-		//ele cria uma sessão provisária e mostra a msg antes de redirecionar
-		//redireciona pra uma url, e não para nome da view
-		attributes.addFlashAttribute("mensagem","Cerveja salva com sucesso!");
-		System.out.println(">>>SKU: "+ cerveja.getSku());
+	@RequestMapping(value = "/cervejas/novo", method = RequestMethod.POST)
+	public ModelAndView cadastrar(@Valid Cerveja cerveja, BindingResult result, Model model, RedirectAttributes attributes) {
+		if (result.hasErrors()) {
+			System.out.println(">>>Tem erro");
+			return novo(cerveja);
+		}
+		System.out.println(">>SKU: " +cerveja.getSku());
+		System.out.println(">>Nome: " +cerveja.getNome());
+		System.out.println(">>Descricao: " +cerveja.getDescricao());
+		System.out.println(">>Comissao: " +cerveja.getComissao());
+		System.out.println(">>Teor Alcoolico: " +cerveja.getTeorAlcoolico());
+		System.out.println("nao tem erro");
+		cadastroCervejaService.salvar(cerveja);
+		attributes.addFlashAttribute("mensagem", "Cerveja salva com sucesso!");
 		return new ModelAndView("redirect:/cervejas/novo");
 	}
 	
