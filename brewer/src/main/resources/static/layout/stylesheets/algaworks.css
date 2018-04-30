@@ -50,11 +50,10 @@
   height: 100%;
   padding-top: 54px;
   margin-left: -211px;
-  border-right-color: #e2e2e2;
+  border-right-color: #f3f7f7;
   border-right: 1px solid;
-  border-right-color: blue;
   overflow-x: hidden;
-  background-color: #f6f6f6;
+  background-color: #fcfdfd;
   transition: all 0.5s;
 }
 @media (min-width: 992px) {
